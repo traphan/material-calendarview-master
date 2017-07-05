@@ -179,6 +179,7 @@ public class MaterialCalendarView extends ViewGroup {
     private CalendarDay currentMonth;
     private LinearLayout topbar;
     private CalendarMode calendarMode;
+    private int currentDayColor = Color.RED;
     /**
      * Used for the dynamic calendar height.
      */
@@ -399,6 +400,7 @@ public class MaterialCalendarView extends ViewGroup {
             removeView(pager);
             MonthView monthView = new MonthView(this, currentMonth, getFirstDayOfWeek());
             monthView.setSelectionColor(getSelectionColor());
+            monthView.setCurrentDayColor(getCurrentDayColor());
             monthView.setDateTextAppearance(adapter.getDateTextAppearance());
             if (adapter.getWeekendTextAppearance() != 0) {
                 monthView.setWeekDayTextAppearance(adapter.getWeekDayTextAppearance(), adapter.getWeekendTextAppearance());
@@ -642,6 +644,10 @@ public class MaterialCalendarView extends ViewGroup {
         return accentColor;
     }
 
+    public int getCurrentDayColor(){
+        return currentDayColor;
+    }
+
     /**
      * @param color The selection color
      */
@@ -655,6 +661,14 @@ public class MaterialCalendarView extends ViewGroup {
         }
         accentColor = color;
         adapter.setSelectionColor(color);
+        invalidate();
+    }
+
+    public void setCurrentDayColor(int color){
+        if(color != 0){
+            currentDayColor = color;
+        }
+        adapter.setCurrentDayColor(currentDayColor);
         invalidate();
     }
 

@@ -27,6 +27,7 @@ abstract class CalendarPagerAdapter<V extends CalendarPagerView> extends PagerAd
 
     private TitleFormatter titleFormatter = null;
     private Integer color = null;
+    private Integer currentDayColor = null;
     private Integer dateTextAppearance = null;
     private Integer weekDayTextAppearance = null;
     private Integer weekendTextAppearance = null;
@@ -146,6 +147,9 @@ abstract class CalendarPagerAdapter<V extends CalendarPagerView> extends PagerAd
         if (color != null) {
             pagerView.setSelectionColor(color);
         }
+        if(currentDayColor != null){
+            pagerView.setCurrentDayColor(currentDayColor);
+        }
         if (dateTextAppearance != null) {
             pagerView.setDateTextAppearance(dateTextAppearance);
         }
@@ -195,6 +199,13 @@ abstract class CalendarPagerAdapter<V extends CalendarPagerView> extends PagerAd
         this.color = color;
         for (V pagerView : currentViews) {
             pagerView.setSelectionColor(color);
+        }
+    }
+
+    public void setCurrentDayColor(int color){
+        this.currentDayColor = color;
+        for (V pagerView : currentViews) {
+            pagerView.setCurrentDayColor(color);
         }
     }
 

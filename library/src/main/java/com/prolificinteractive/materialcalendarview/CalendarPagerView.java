@@ -144,6 +144,12 @@ abstract class CalendarPagerView extends ViewGroup implements View.OnClickListen
         }
     }
 
+    public void setCurrentDayColor(int color){
+        for(DayView dayView : dayViews){
+            dayView.setColorCircleCurrentDay(color);
+        }
+    }
+
     public void setWeekDayFormatter(WeekDayFormatter formatter) {
         for (WeekDayView dayView : weekDayViews) {
             dayView.setWeekDayFormatter(formatter);

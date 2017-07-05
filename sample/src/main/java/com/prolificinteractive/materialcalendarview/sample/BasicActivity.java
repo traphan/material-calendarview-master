@@ -1,5 +1,6 @@
 package com.prolificinteractive.materialcalendarview.sample;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -38,6 +39,8 @@ public class BasicActivity extends AppCompatActivity implements OnDateSelectedLi
 
         widget.setOnDateChangedListener(this);
         widget.setOnMonthChangedListener(this);
+        widget.setCurrentDayColor(Color.GREEN);
+        widget.setSelectionColor(Color.YELLOW);
 
         //Setup initial text
         textView.setText(getSelectedDatesString());

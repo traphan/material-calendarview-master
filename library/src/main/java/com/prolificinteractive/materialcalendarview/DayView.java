@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
@@ -23,6 +24,7 @@ import android.widget.CheckedTextView;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView.ShowOtherDates;
 import com.prolificinteractive.materialcalendarview.format.DayFormatter;
 
+import java.util.Date;
 import java.util.List;
 
 import static com.prolificinteractive.materialcalendarview.MaterialCalendarView.showDecoratedDisabled;
@@ -41,7 +43,9 @@ class DayView extends CheckedTextView {
     private final int fadeTime;
     private Drawable customBackground = null;
     private Drawable selectionDrawable;
+    private Drawable currentDrawbleCircle;
     private Drawable mCircleDrawable;
+    private int colorCircleCurrentDay = Color.RED;
     private DayFormatter formatter = DayFormatter.DEFAULT;
 
     private boolean isInRange = true;
@@ -55,8 +59,8 @@ class DayView extends CheckedTextView {
 
         fadeTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
-        setSelectionColor(this.selectionColor);
-
+        setSelectionColor(Color.YELLOW);
+        setColorCircleCurrentDay(this.colorCircleCurrentDay);
         setGravity(Gravity.CENTER);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
@@ -102,6 +106,11 @@ class DayView extends CheckedTextView {
         regenerateBackground();
     }
 
+    public void setColorCircleCurrentDay(int color){
+        this.colorCircleCurrentDay = color;
+        regenerateBackground();
+    }
+
     /**
      * @param drawable custom selection drawable
      */
@@ -112,6 +121,14 @@ class DayView extends CheckedTextView {
             this.selectionDrawable = drawable.getConstantState().newDrawable(getResources());
         }
         regenerateBackground();
+    }
+
+    public void setCurrentDrawbleCircle(Drawable drawable){
+        if(drawable == null){
+            this.currentDrawbleCircle = null;
+        }else{
+            this.currentDrawbleCircle = drawable.getConstantState().newDrawable(getResources());
+        }
     }
 
     /**
@@ -176,10 +193,16 @@ class DayView extends CheckedTextView {
             customBackground.setState(getDrawableState());
             customBackground.draw(canvas);
         }
+        CalendarDay today = date.today();
+        CalendarDay dateIterator = date;
+        if(dateIterator.equals(today)) {
+            Paint paintCircle = new Paint();
+            paintCircle.setColor(colorCircleCurrentDay);
+            canvas.drawCircle(canvas.getHeight() - (canvas.getHeight() / 4), canvas.getWidth() / 5, canvas.getHeight()/10, paintCircle);
+        }
+            mCircleDrawable.setBounds(circleDrawableRect);
+            super.onDraw(canvas);
 
-        mCircleDrawable.setBounds(circleDrawableRect);
-
-        super.onDraw(canvas);
     }
 
     private void regenerateBackground() {
@@ -240,7 +263,7 @@ class DayView extends CheckedTextView {
 
         setCustomBackground(facade.getBackgroundDrawable());
         setSelectionDrawable(facade.getSelectionDrawable());
-
+        setCurrentDrawbleCircle(facade.getCurrentDayCircle());
         // Facade has spans
         List<DayViewFacade.Span> spans = facade.getSpans();
         if (!spans.isEmpty()) {
