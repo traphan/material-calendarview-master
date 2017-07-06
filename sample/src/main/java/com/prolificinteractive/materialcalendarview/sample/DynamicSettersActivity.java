@@ -45,6 +45,7 @@ public class DynamicSettersActivity extends AppCompatActivity {
         currentTileWidth = MaterialCalendarView.DEFAULT_TILE_SIZE_DP;
         currentTileHeight = MaterialCalendarView.DEFAULT_TILE_SIZE_DP;
 
+
         widget.setOnTitleClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {

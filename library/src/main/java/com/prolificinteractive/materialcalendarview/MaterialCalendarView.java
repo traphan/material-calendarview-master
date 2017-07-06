@@ -400,7 +400,7 @@ public class MaterialCalendarView extends ViewGroup {
             removeView(pager);
             MonthView monthView = new MonthView(this, currentMonth, getFirstDayOfWeek());
             monthView.setSelectionColor(getSelectionColor());
-            monthView.setCurrentDayColor(getCurrentDayColor());
+           // monthView.setCurrentDayColor(getCurrentDayColor());
             monthView.setDateTextAppearance(adapter.getDateTextAppearance());
             if (adapter.getWeekendTextAppearance() != 0) {
                 monthView.setWeekDayTextAppearance(adapter.getWeekDayTextAppearance(), adapter.getWeekendTextAppearance());

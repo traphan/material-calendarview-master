@@ -24,6 +24,7 @@ import android.widget.CheckedTextView;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView.ShowOtherDates;
 import com.prolificinteractive.materialcalendarview.format.DayFormatter;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -198,7 +199,7 @@ class DayView extends CheckedTextView {
         CalendarDay dateIterator = date;
         if(dateIterator.equals(today)) {
             Paint paintCircle = new Paint();
-            paintCircle.setColor(colorCircleCurrentDay);
+            paintCircle.setColor(CalendarUtils.getColorCurrentDayCircle());
             canvas.drawCircle(canvas.getHeight() - (canvas.getHeight() / 4), canvas.getWidth() / 5, canvas.getHeight()/10, paintCircle);
         }
             mCircleDrawable.setBounds(circleDrawableRect);

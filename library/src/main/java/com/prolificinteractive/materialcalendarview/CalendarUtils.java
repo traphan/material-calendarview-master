@@ -1,5 +1,6 @@
 package com.prolificinteractive.materialcalendarview;
 
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -15,6 +16,8 @@ import static java.util.Calendar.YEAR;
  * Utilities for Calendar
  */
 public class CalendarUtils {
+
+    public static Integer colorCurrentDayCircle = Color.RED;
 
     /**
      * @param date {@linkplain Date} to pull date information from
@@ -79,5 +82,13 @@ public class CalendarUtils {
 
     public static int getDayOfWeek(Calendar calendar) {
         return calendar.get(DAY_OF_WEEK);
+    }
+
+    public static Integer getColorCurrentDayCircle() {
+        return colorCurrentDayCircle;
+    }
+
+    public static void setColorCurrentDayCircle(Integer colorCurrentDayCircle) {
+        CalendarUtils.colorCurrentDayCircle = colorCurrentDayCircle;
     }
 }

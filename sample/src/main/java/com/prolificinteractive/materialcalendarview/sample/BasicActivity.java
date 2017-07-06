@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
+import com.prolificinteractive.materialcalendarview.CalendarUtils;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
 import com.prolificinteractive.materialcalendarview.OnMonthChangedListener;
@@ -39,8 +40,8 @@ public class BasicActivity extends AppCompatActivity implements OnDateSelectedLi
 
         widget.setOnDateChangedListener(this);
         widget.setOnMonthChangedListener(this);
-        widget.setCurrentDayColor(Color.GREEN);
-
+        CalendarUtils.setColorCurrentDayCircle(Color.GREEN);
+        widget.setCurrentDayColor(Color.MAGENTA);
         //Setup initial text
         textView.setText(getSelectedDatesString());
     }
