@@ -44,7 +44,7 @@ public class DynamicSettersActivity extends AppCompatActivity {
         currentTileSize = MaterialCalendarView.DEFAULT_TILE_SIZE_DP;
         currentTileWidth = MaterialCalendarView.DEFAULT_TILE_SIZE_DP;
         currentTileHeight = MaterialCalendarView.DEFAULT_TILE_SIZE_DP;
-
+        widget.setCurrentDayColor(Color.GREEN);
 
         widget.setOnTitleClickListener(new View.OnClickListener() {
             @Override

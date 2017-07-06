@@ -36,6 +36,7 @@ abstract class CalendarPagerView extends ViewGroup implements View.OnClickListen
     private CalendarDay minDate = null;
     private CalendarDay maxDate = null;
     private int firstDayOfWeek;
+    private int curentColorDay = 0;
 
     private final Collection<DayView> dayViews = new ArrayList<>();
 
@@ -145,6 +146,7 @@ abstract class CalendarPagerView extends ViewGroup implements View.OnClickListen
     }
 
     public void setCurrentDayColor(int color){
+        curentColorDay = color;
         for(DayView dayView : dayViews){
             dayView.setColorCircleCurrentDay(color);
         }

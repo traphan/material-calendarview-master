@@ -46,7 +46,7 @@ class DayView extends CheckedTextView {
     private Drawable selectionDrawable;
     private Drawable currentDrawbleCircle;
     private Drawable mCircleDrawable;
-    private int colorCircleCurrentDay = Color.RED;
+    private static int colorCircleCurrentDay = 0;
     private DayFormatter formatter = DayFormatter.DEFAULT;
 
     private boolean isInRange = true;
@@ -106,7 +106,6 @@ class DayView extends CheckedTextView {
 
     public void setColorCircleCurrentDay(int color){
         this.colorCircleCurrentDay = color;
-        regenerateBackground();
     }
 
     /**
@@ -199,7 +198,7 @@ class DayView extends CheckedTextView {
         CalendarDay dateIterator = date;
         if(dateIterator.equals(today)) {
             Paint paintCircle = new Paint();
-            paintCircle.setColor(CalendarUtils.getColorCurrentDayCircle());
+            paintCircle.setColor(colorCircleCurrentDay);
             canvas.drawCircle(canvas.getHeight() - (canvas.getHeight() / 4), canvas.getWidth() / 5, canvas.getHeight()/10, paintCircle);
         }
             mCircleDrawable.setBounds(circleDrawableRect);
@@ -266,6 +265,7 @@ class DayView extends CheckedTextView {
         setCustomBackground(facade.getBackgroundDrawable());
         setSelectionDrawable(facade.getSelectionDrawable());
         setCurrentDrawbleCircle(facade.getCurrentDayCircle());
+
         // Facade has spans
         List<DayViewFacade.Span> spans = facade.getSpans();
         if (!spans.isEmpty()) {

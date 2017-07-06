@@ -179,7 +179,7 @@ public class MaterialCalendarView extends ViewGroup {
     private CalendarDay currentMonth;
     private LinearLayout topbar;
     private CalendarMode calendarMode;
-    private int currentDayColor = Color.RED;
+
     /**
      * Used for the dynamic calendar height.
      */
@@ -226,6 +226,7 @@ public class MaterialCalendarView extends ViewGroup {
 
     CharSequence calendarContentDescription;
     private int accentColor = 0;
+    private int colorCurrentDay = Color.GREEN;
     private int arrowColor = Color.BLACK;
     private Drawable leftArrowMask;
     private Drawable rightArrowMask;
@@ -343,7 +344,7 @@ public class MaterialCalendarView extends ViewGroup {
                             getThemeAccentColor(context)
                     )
             );
-
+            setCurrentDayColor(getCurrentDayColor());
             CharSequence[] array = a.getTextArray(R.styleable.MaterialCalendarView_mcv_weekDayLabels);
             if (array != null) {
                 setWeekDayFormatter(new ArrayWeekDayFormatter(array));
@@ -400,7 +401,7 @@ public class MaterialCalendarView extends ViewGroup {
             removeView(pager);
             MonthView monthView = new MonthView(this, currentMonth, getFirstDayOfWeek());
             monthView.setSelectionColor(getSelectionColor());
-           // monthView.setCurrentDayColor(getCurrentDayColor());
+            monthView.setCurrentDayColor(getCurrentDayColor());
             monthView.setDateTextAppearance(adapter.getDateTextAppearance());
             if (adapter.getWeekendTextAppearance() != 0) {
                 monthView.setWeekDayTextAppearance(adapter.getWeekDayTextAppearance(), adapter.getWeekendTextAppearance());
@@ -645,7 +646,7 @@ public class MaterialCalendarView extends ViewGroup {
     }
 
     public int getCurrentDayColor(){
-        return currentDayColor;
+        return colorCurrentDay;
     }
 
     /**
@@ -665,10 +666,15 @@ public class MaterialCalendarView extends ViewGroup {
     }
 
     public void setCurrentDayColor(int color){
-        if(color != 0){
-            currentDayColor = color;
+        if (color == 0) {
+            if (!isInEditMode()) {
+                return;
+            } else {
+                color = Color.GRAY;
+            }
         }
-        adapter.setCurrentDayColor(currentDayColor);
+        colorCurrentDay = color;
+        adapter.setCurrentDayColor(color);
         invalidate();
     }
 
@@ -1097,6 +1103,7 @@ public class MaterialCalendarView extends ViewGroup {
     protected Parcelable onSaveInstanceState() {
         SavedState ss = new SavedState(super.onSaveInstanceState());
         ss.color = getSelectionColor();
+        ss.colorCurrentDay = getCurrentDayColor();
         ss.dateTextAppearance = adapter.getDateTextAppearance();
         ss.weekDayTextAppearance = adapter.getWeekDayTextAppearance();
         ss.showOtherDates = getShowOtherDates();
@@ -1130,6 +1137,7 @@ public class MaterialCalendarView extends ViewGroup {
                 .commit();
 
         setSelectionColor(ss.color);
+        setCurrentDayColor(ss.colorCurrentDay);
         setDateTextAppearance(ss.dateTextAppearance);
         setWeekDayTextAppearance(ss.weekDayTextAppearance);
         setShowOtherDates(ss.showOtherDates);
@@ -1172,6 +1180,7 @@ public class MaterialCalendarView extends ViewGroup {
     public static class SavedState extends BaseSavedState {
 
         int color = 0;
+        int colorCurrentDay = 0;
         int dateTextAppearance = 0;
         int weekDayTextAppearance = 0;
         int showOtherDates = SHOW_DEFAULTS;
@@ -1198,6 +1207,7 @@ public class MaterialCalendarView extends ViewGroup {
         public void writeToParcel(@NonNull Parcel out, int flags) {
             super.writeToParcel(out, flags);
             out.writeInt(color);
+            out.writeInt(colorCurrentDay);
             out.writeInt(dateTextAppearance);
             out.writeInt(weekDayTextAppearance);
             out.writeInt(showOtherDates);
@@ -1231,6 +1241,7 @@ public class MaterialCalendarView extends ViewGroup {
         private SavedState(Parcel in) {
             super(in);
             color = in.readInt();
+            colorCurrentDay =in.readInt();
             dateTextAppearance = in.readInt();
             weekDayTextAppearance = in.readInt();
             showOtherDates = in.readInt();

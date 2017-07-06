@@ -40,8 +40,8 @@ public class BasicActivity extends AppCompatActivity implements OnDateSelectedLi
 
         widget.setOnDateChangedListener(this);
         widget.setOnMonthChangedListener(this);
-        CalendarUtils.setColorCurrentDayCircle(Color.GREEN);
-        widget.setCurrentDayColor(Color.MAGENTA);
+
+        widget.setCurrentDayColor(Color.GREEN);
         //Setup initial text
         textView.setText(getSelectedDatesString());
     }
