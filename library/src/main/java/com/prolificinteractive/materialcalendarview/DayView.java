@@ -59,7 +59,7 @@ class DayView extends CheckedTextView {
 
         fadeTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
-        setSelectionColor(Color.YELLOW);
+
         setColorCircleCurrentDay(this.colorCircleCurrentDay);
         setGravity(Gravity.CENTER);
 
@@ -173,7 +173,11 @@ class DayView extends CheckedTextView {
             setTextColor(getTextColors().getColorForState(
                     new int[]{-android.R.attr.state_enabled}, Color.GRAY));
         }
-        setVisibility(shouldBeVisible ? View.VISIBLE : View.INVISIBLE);
+        if ( !shouldBeVisible) {
+            setTextColor(getTextColors().getColorForState(
+                    new int[]{-android.R.attr.state_enabled}, Color.GRAY));
+        }
+        //setVisibility(shouldBeVisible ? View.VISIBLE : View.INVISIBLE);
     }
 
     protected void setupSelection(@ShowOtherDates int showOtherDates, boolean inRange, boolean inMonth) {
