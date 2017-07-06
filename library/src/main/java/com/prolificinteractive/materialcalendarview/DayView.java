@@ -58,9 +58,6 @@ class DayView extends CheckedTextView {
         super(context);
 
         fadeTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
-
-
-        setColorCircleCurrentDay(this.colorCircleCurrentDay);
         setGravity(Gravity.CENTER);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
