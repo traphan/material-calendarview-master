@@ -46,7 +46,7 @@ class DayView extends CheckedTextView {
     private Drawable selectionDrawable;
     private Drawable currentDrawbleCircle;
     private Drawable mCircleDrawable;
-    private static int colorCircleCurrentDay = 0;
+    private  int colorCircleCurrentDay = 0;
     private DayFormatter formatter = DayFormatter.DEFAULT;
 
     private boolean isInRange = true;
