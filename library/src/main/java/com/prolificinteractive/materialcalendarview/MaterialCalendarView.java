@@ -35,6 +35,9 @@ import com.prolificinteractive.materialcalendarview.format.WeekDayFormatter;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
@@ -179,7 +182,7 @@ public class MaterialCalendarView extends ViewGroup {
     private CalendarDay currentMonth;
     private LinearLayout topbar;
     private CalendarMode calendarMode;
-
+    private final float defultHieght = (float) 0.9;
     /**
      * Used for the dynamic calendar height.
      */
@@ -1671,7 +1674,7 @@ public class MaterialCalendarView extends ViewGroup {
         setMeasuredDimension(
                 //We clamp inline because we want to use un-clamped versions on the children
                 clampSize(measuredWidth, widthMeasureSpec),
-                clampSize(measuredHeight - 150, heightMeasureSpec)
+                clampSize(measuredHeight , heightMeasureSpec)
         );
 
         int count = getChildCount();
@@ -1686,8 +1689,13 @@ public class MaterialCalendarView extends ViewGroup {
                     MeasureSpec.EXACTLY
             );
 
+            Integer mesureNew = p.height * measureTileHeight;
+            double mesuareFloat = mesureNew * defultHieght;
+            mesuareFloat = new BigDecimal(mesuareFloat).setScale(0, RoundingMode.HALF_UP).doubleValue();
+            mesureNew = (int) mesuareFloat;
+
             int childHeightMeasureSpec = MeasureSpec.makeMeasureSpec(
-                    p.height * measureTileHeight,
+                    mesureNew ,
                     MeasureSpec.EXACTLY
             );
 
