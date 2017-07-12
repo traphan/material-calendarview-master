@@ -199,7 +199,7 @@ class DayView extends CheckedTextView {
         if(dateIterator.equals(today)) {
             Paint paintCircle = new Paint();
             paintCircle.setColor(colorCircleCurrentDay);
-            canvas.drawCircle(canvas.getHeight() - (canvas.getHeight() / 4), canvas.getWidth() / 5, canvas.getHeight()/10, paintCircle);
+            canvas.drawCircle(canvas.getHeight() - (canvas.getHeight() / 5), canvas.getWidth() / 5, canvas.getHeight()/10, paintCircle);
         }
             mCircleDrawable.setBounds(circleDrawableRect);
             super.onDraw(canvas);

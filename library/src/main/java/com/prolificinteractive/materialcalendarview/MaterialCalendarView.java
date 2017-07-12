@@ -2050,7 +2050,7 @@ public class MaterialCalendarView extends ViewGroup {
         }
         pager.setAdapter(adapter);
         setRangeDates(minDate, maxDate);
-
+        setCurrentDayColor(getCurrentDayColor());
         // Reset height params after mode change
         pager.setLayoutParams(new LayoutParams(calendarMode.visibleWeeksCount + DAY_NAMES_ROW));
 
