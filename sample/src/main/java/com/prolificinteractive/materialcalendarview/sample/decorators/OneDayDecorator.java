@@ -1,8 +1,10 @@
 package com.prolificinteractive.materialcalendarview.sample.decorators;
 
 import android.graphics.Typeface;
+import android.print.PrintAttributes;
 import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
+import android.view.ViewGroup;
 
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.DayViewDecorator;
@@ -31,6 +33,7 @@ public class OneDayDecorator implements DayViewDecorator {
     public void decorate(DayViewFacade view) {
         view.addSpan(new StyleSpan(Typeface.BOLD));
         view.addSpan(new RelativeSizeSpan(1.4f));
+        view.addSpan(new ViewGroup.MarginLayoutParams(110,110));
     }
 
     /**

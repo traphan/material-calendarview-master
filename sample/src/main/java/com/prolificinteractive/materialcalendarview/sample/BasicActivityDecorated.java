@@ -41,6 +41,7 @@ public class BasicActivityDecorated extends AppCompatActivity implements OnDateS
         widget.setOnDateChangedListener(this);
         widget.setShowOtherDates(MaterialCalendarView.SHOW_ALL);
 
+        widget.setCurrentDayColor(Color.GREEN);
         Calendar instance = Calendar.getInstance();
         widget.setSelectedDate(instance.getTime());
 
@@ -56,12 +57,12 @@ public class BasicActivityDecorated extends AppCompatActivity implements OnDateS
                 .commit();
 
         widget.addDecorators(
-                new MySelectorDecorator(this),
-                new HighlightWeekendsDecorator(),
+               // new MySelectorDecorator(this),
+               // new HighlightWeekendsDecorator(),
                 oneDayDecorator
         );
 
-        new ApiSimulator().executeOnExecutor(Executors.newSingleThreadExecutor());
+       // new ApiSimulator().executeOnExecutor(Executors.newSingleThreadExecutor());
     }
 
     @Override

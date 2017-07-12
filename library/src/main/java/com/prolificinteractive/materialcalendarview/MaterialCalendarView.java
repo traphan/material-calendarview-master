@@ -1665,13 +1665,13 @@ public class MaterialCalendarView extends ViewGroup {
 
         //Put padding back in from when we took it away
         measuredWidth += getPaddingLeft() + getPaddingRight();
-        measuredHeight += getPaddingTop() + getPaddingBottom();
+        measuredHeight += (getPaddingTop() + getPaddingBottom()) ;
 
         //Contract fulfilled, setting out measurements
         setMeasuredDimension(
                 //We clamp inline because we want to use un-clamped versions on the children
                 clampSize(measuredWidth, widthMeasureSpec),
-                clampSize(measuredHeight, heightMeasureSpec)
+                clampSize(measuredHeight - 150, heightMeasureSpec)
         );
 
         int count = getChildCount();
