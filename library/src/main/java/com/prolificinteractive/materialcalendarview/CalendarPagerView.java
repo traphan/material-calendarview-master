@@ -6,20 +6,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
-
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView.ShowOtherDates;
 import com.prolificinteractive.materialcalendarview.format.DayFormatter;
 import com.prolificinteractive.materialcalendarview.format.WeekDayFormatter;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.List;
-
 import static com.prolificinteractive.materialcalendarview.MaterialCalendarView.SHOW_DEFAULTS;
 import static com.prolificinteractive.materialcalendarview.MaterialCalendarView.showOtherMonths;
 import static java.util.Calendar.DATE;
-import static java.util.Calendar.DAY_OF_WEEK;
+
 
 abstract class CalendarPagerView extends ViewGroup implements View.OnClickListener {
 
@@ -286,17 +283,17 @@ abstract class CalendarPagerView extends ViewGroup implements View.OnClickListen
         for (int i = 0; i < count; i++) {
             final View child = getChildAt(i);
 
-            final int width = child.getMeasuredWidth();
-            final int height = child.getMeasuredHeight();
+            final int width = child.getMeasuredWidth() - 20;
+            final int height = child.getMeasuredHeight() - 20;
 
             child.layout(childLeft, childTop, childLeft + width, childTop + height);
 
-            childLeft += width;
+            childLeft += width + 20;
 
             //We should warp every so many children
             if (i % DEFAULT_DAYS_IN_WEEK == (DEFAULT_DAYS_IN_WEEK - 1)) {
                 childLeft = parentLeft;
-                childTop += height;
+                childTop += height + 20;
             }
 
         }

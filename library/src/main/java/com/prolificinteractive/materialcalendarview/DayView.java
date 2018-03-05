@@ -46,12 +46,13 @@ class DayView extends CheckedTextView {
     private Drawable selectionDrawable;
     private Drawable currentDrawbleCircle;
     private Drawable mCircleDrawable;
+    private Drawable drawbleBackgrond;
     private  int colorCircleCurrentDay = 0;
     private DayFormatter formatter = DayFormatter.DEFAULT;
-
     private boolean isInRange = true;
     private boolean isInMonth = true;
     private boolean isDecoratedDisabled = false;
+
     @ShowOtherDates
     private int showOtherDates = MaterialCalendarView.SHOW_DEFAULTS;
 
@@ -284,9 +285,11 @@ class DayView extends CheckedTextView {
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-        super.onLayout(changed, left, top, right, bottom);
+        super.onLayout(changed, left , top, right, bottom);
         calculateBounds(right - left, bottom - top);
         regenerateBackground();
+        setBackgroundResource(R.drawable.one_day_background);
+//        applyDrawbleBackground();
     }
 
     private void calculateBounds(int width, int height) {
@@ -304,4 +307,15 @@ class DayView extends CheckedTextView {
             circleDrawableRect.set(0, circleOffset, width, radius + circleOffset);
         }
     }
+
+    public void setDrawbleBackgrond (Drawable drawbleBackgrond) {
+        this.drawbleBackgrond = drawbleBackgrond;
+    }
+
+    public void applyDrawbleBackground () {
+        if(drawbleBackgrond != null) {
+            setBackground(drawbleBackgrond);
+        }
+    }
+
 }

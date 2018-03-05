@@ -17,6 +17,7 @@ public class DayViewFacade {
     private Drawable backgroundDrawable = null;
     private Drawable selectionDrawable = null;
     private Drawable currentDrawbleCircle = null;
+    private Drawable backgroundDrawbleDay = null;
     private final LinkedList<Span> spans = new LinkedList<>();
     private boolean daysDisabled = false;
 
@@ -34,6 +35,14 @@ public class DayViewFacade {
             throw new IllegalArgumentException("Cannot be null");
         }
         this.backgroundDrawable = drawable;
+        isDecorated = true;
+    }
+
+    public void setBackgroundDrawableDay(@NonNull Drawable drawable) {
+        if (drawable == null) {
+            throw new IllegalArgumentException("Cannot be null");
+        }
+        this.backgroundDrawbleDay = drawable;
         isDecorated = true;
     }
 
@@ -103,8 +112,11 @@ public class DayViewFacade {
         if (backgroundDrawable != null) {
             other.setBackgroundDrawable(backgroundDrawable);
         }
-        if(backgroundDrawable != null){
+        if(currentDrawbleCircle != null){
             other.setCurrentDayDrawable(currentDrawbleCircle);
+        }
+        if(backgroundDrawbleDay != null){
+            other.setCurrentDayDrawable(backgroundDrawbleDay);
         }
         other.spans.addAll(spans);
         other.isDecorated |= this.isDecorated;
