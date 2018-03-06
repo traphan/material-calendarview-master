@@ -284,7 +284,7 @@ abstract class CalendarPagerView extends ViewGroup implements View.OnClickListen
             final View child = getChildAt(i);
 
             final int width = child.getMeasuredWidth() - 20;
-            final int height = child.getMeasuredHeight();
+            final int height = child.getMeasuredHeight() - 3;
 
             child.layout(childLeft, childTop, childLeft + width, childTop + height);
 
