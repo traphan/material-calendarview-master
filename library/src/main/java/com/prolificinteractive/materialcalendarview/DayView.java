@@ -175,7 +175,7 @@ class DayView extends CheckedTextView {
             setTextColor(getTextColors().getColorForState(
                     new int[]{-android.R.attr.state_enabled}, Color.GRAY));
         }
-        //setVisibility(shouldBeVisible ? View.VISIBLE : View.INVISIBLE);
+        setVisibility(shouldBeVisible ? View.VISIBLE : View.INVISIBLE);
     }
 
     protected void setupSelection(@ShowOtherDates int showOtherDates, boolean inRange, boolean inMonth) {
