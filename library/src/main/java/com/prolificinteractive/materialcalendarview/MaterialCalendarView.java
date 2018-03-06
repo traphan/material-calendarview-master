@@ -1607,7 +1607,7 @@ public class MaterialCalendarView extends ViewGroup {
 
         //We need to disregard padding for a while. This will be added back later
         final int desiredWidth = specWidthSize - getPaddingLeft() - getPaddingRight();
-        final int desiredHeight = specHeightSize - getPaddingTop() - getPaddingBottom() - 100;
+        final int desiredHeight = specHeightSize - getPaddingTop() - getPaddingBottom() - 140;
 
         final int weekCount = getWeekCountBasedOnMode();
 
