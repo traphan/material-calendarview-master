@@ -284,7 +284,7 @@ abstract class CalendarPagerView extends ViewGroup implements View.OnClickListen
             final View child = getChildAt(i);
 
             final int width = child.getMeasuredWidth() - 20;
-            final int height = child.getMeasuredHeight() - 10;
+            final int height = child.getMeasuredHeight() + 10;
 
             child.layout(childLeft, childTop, childLeft + width, childTop + height);
 
@@ -293,7 +293,7 @@ abstract class CalendarPagerView extends ViewGroup implements View.OnClickListen
             //We should warp every so many children
             if (i % DEFAULT_DAYS_IN_WEEK == (DEFAULT_DAYS_IN_WEEK - 1)) {
                 childLeft = parentLeft;
-                childTop += height + 30;
+                childTop += height;
             }
 
         }
