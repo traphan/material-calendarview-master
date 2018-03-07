@@ -293,7 +293,7 @@ abstract class CalendarPagerView extends ViewGroup implements View.OnClickListen
             //We should warp every so many children
             if (i % DEFAULT_DAYS_IN_WEEK == (DEFAULT_DAYS_IN_WEEK - 1)) {
                 childLeft = parentLeft + 20;
-                childTop += height + 28;
+                childTop += height + 10;
             }
 
         }
